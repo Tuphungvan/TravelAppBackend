@@ -40,6 +40,6 @@ db.connect();
 route(app);
 
 // Start server
-app.listen(port, '0.0.0.0', () => {
-    console.log(`🚀 Server đang chạy tại http://0.0.0.0:${port}`);
+app.listen(port, () => {
+    console.log(`🚀 Server đang chạy tại port ${port}`);
 });
