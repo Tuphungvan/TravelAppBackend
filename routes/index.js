@@ -7,6 +7,7 @@ const checkoutRouter = require('./checkout');
 const managerOrderRouter = require('./managerOrder');
 const galleryRouter = require('./gallery');
 const reviewRouter = require('./review');
+const videoRoute = require('./videos');
 
 function route(app) {
     app.use('/admin', adminRouter);
@@ -18,6 +19,7 @@ function route(app) {
     app.use('/admin/manager-order', managerOrderRouter);
     app.use('/', galleryRouter);
     app.use('/', reviewRouter);
+    app.use('/api/videos', videoRoute);
 }
 
 module.exports = route;
