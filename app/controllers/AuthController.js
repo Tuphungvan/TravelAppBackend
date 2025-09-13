@@ -18,13 +18,12 @@ class AuthController {
 
             // Kiểm tra trùng lặp
             const existingUser = await User.findOne({
-                $or: [{ email }, { username }, { phoneNumber }],
+                $or: [{ email }, { phoneNumber }],
             });
 
             if (existingUser) {
                 let errorMessage = "Thông tin đã được sử dụng.";
                 if (existingUser.email === email) errorMessage = "Email đã được đăng ký.";
-                if (existingUser.username === username) errorMessage = "Tên người dùng đã được sử dụng.";
                 if (existingUser.phoneNumber === phoneNumber) errorMessage = "Số điện thoại đã được đăng ký.";
                 return res.status(400).json({ message: errorMessage });
             }
@@ -57,11 +56,11 @@ class AuthController {
     // Đăng nhập
     async login(req, res) {
         try {
-            const { username, password } = req.body;
+            const { email, password } = req.body;
 
-            const user = await User.findOne({ username });
+            const user = await User.findOne({ email });
             if (!user) {
-                return res.status(400).json({ message: "Tên người dùng không tồn tại." });
+                return res.status(400).json({ message: "Email người dùng không tồn tại." });
             }
 
             if (!user.active) {
